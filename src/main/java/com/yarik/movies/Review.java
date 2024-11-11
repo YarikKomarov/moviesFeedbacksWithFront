@@ -15,12 +15,9 @@ public class Review {
     @Id
     private ObjectId id;
     private String body;
-    private LocalDateTime created;
-    private LocalDateTime updated;
 
-    public Review(String body, LocalDateTime created, LocalDateTime updated) {
+    public Review(String body) {
         this.body = body;
-        this.created = created;
-        this.updated = updated;
+
     }
 }

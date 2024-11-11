@@ -6,18 +6,17 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class ReviewService {
     @Autowired
-    private ReviewRepository repository;
+    private ReviewRepository reviewRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate;
 
     public Review createReview(String reviewBody, String imdbId) {
-        Review review = repository.insert(new Review(reviewBody, LocalDateTime.now(), LocalDateTime.now()));
+        Review review = reviewRepository.insert(new Review(reviewBody));
 
         mongoTemplate.update(Movie.class)
                 .matching(Criteria.where("imdbId").is(imdbId))
